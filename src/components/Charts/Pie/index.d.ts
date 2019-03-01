@@ -1,8 +1,6 @@
 import * as React from 'react';
-import { number } from 'prop-types';
 export interface IPieProps {
   animate?: boolean;
-  inner?: number;
   color?: string;
   colors?: string[];
   height: number;
@@ -18,9 +16,6 @@ export interface IPieProps {
   tooltip?: boolean;
   valueFormat?: (value: string) => string | React.ReactNode;
   subTitle?: React.ReactNode;
-  lineWidth?: number;
-  margin?: number[];
-  style?: any; // TODO
 }
 
 export default class Pie extends React.Component<IPieProps, any> {}

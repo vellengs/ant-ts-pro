@@ -23,7 +23,7 @@ const Body = ({ children, title, style }) => (
 );
 
 @connect(({ setting }) => ({ setting }))
-class SettingDrawer extends PureComponent<any, any> {
+class SettingDrawer extends PureComponent {
   state = {
     collapse: false,
   };
@@ -120,7 +120,7 @@ class SettingDrawer extends PureComponent<any, any> {
     return (
       <Tooltip title={item.disabled ? item.disabledReason : ''} placement="left">
         <List.Item actions={[action]}>
-          <span style={{ opacity: item.disabled ? 0.5 : 1 }}>{item.title}</span>
+          <span style={{ opacity: item.disabled ? '0.5' : '' }}>{item.title}</span>
         </List.Item>
       </Tooltip>
     );
@@ -136,24 +136,24 @@ class SettingDrawer extends PureComponent<any, any> {
         width={300}
         onClose={this.togglerContent}
         placement="right"
-        // handler={
-        //   <div className={styles.handle}>
-        //     <Icon
-        //       type={collapse ? 'close' : 'setting'}
-        //       style={{
-        //         color: '#fff',
-        //         fontSize: 20,
-        //       }}
-        //     />
-        //   </div>
-        // }
-        // onHandleClick={this.togglerContent}
+        handler={
+          <div className={styles.handle}>
+            <Icon
+              type={collapse ? 'close' : 'setting'}
+              style={{
+                color: '#fff',
+                fontSize: 20,
+              }}
+            />
+          </div>
+        }
+        onHandleClick={this.togglerContent}
         style={{
           zIndex: 999,
         }}
       >
         <div className={styles.content}>
-          <Body style={{}} title={formatMessage({ id: 'app.setting.pagestyle' })}>
+          <Body title={formatMessage({ id: 'app.setting.pagestyle' })}>
             <BlockCheckbox
               list={[
                 {
@@ -173,7 +173,6 @@ class SettingDrawer extends PureComponent<any, any> {
           </Body>
 
           <ThemeColor
-            colors={false}
             title={formatMessage({ id: 'app.setting.themecolor' })}
             value={primaryColor}
             onChange={color => this.changeSetting('primaryColor', color)}
@@ -181,7 +180,7 @@ class SettingDrawer extends PureComponent<any, any> {
 
           <Divider />
 
-          <Body style={{}} title={formatMessage({ id: 'app.setting.navigationmode' })}>
+          <Body title={formatMessage({ id: 'app.setting.navigationmode' })}>
             <BlockCheckbox
               list={[
                 {
@@ -208,11 +207,10 @@ class SettingDrawer extends PureComponent<any, any> {
 
           <Divider />
 
-          <Body style={{}} title={formatMessage({ id: 'app.setting.othersettings' })}>
+          <Body title={formatMessage({ id: 'app.setting.othersettings' })}>
             <List.Item
               actions={[
                 <Switch
-                  key="01"
                   size="small"
                   checked={!!colorWeak}
                   onChange={checked => this.changeSetting('colorWeak', checked)}
@@ -227,7 +225,7 @@ class SettingDrawer extends PureComponent<any, any> {
             text={JSON.stringify(omit(setting, ['colorWeak']), null, 2)}
             onCopy={() => message.success(formatMessage({ id: 'app.setting.copyinfo' }))}
           >
-            <Button block={true} icon="copy">
+            <Button block icon="copy">
               {formatMessage({ id: 'app.setting.copy' })}
             </Button>
           </CopyToClipboard>

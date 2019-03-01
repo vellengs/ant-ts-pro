@@ -2,8 +2,8 @@ import React from 'react';
 import { Tooltip, Icon } from 'antd';
 import style from './index.less';
 
-const BlockCheckbox = ({ value, onChange, list }) => (
-  <div className={style.blockCheckbox} key={value}>
+const BlockChecbox = ({ value, onChange, list }) => (
+  <div className={style.blockChecbox} key={value}>
     {list.map(item => (
       <Tooltip title={item.title} key={item.key}>
         <div className={style.item} onClick={() => onChange(item.key)}>
@@ -22,4 +22,4 @@ const BlockCheckbox = ({ value, onChange, list }) => (
   </div>
 );
 
-export default BlockCheckbox;
+export default BlockChecbox;

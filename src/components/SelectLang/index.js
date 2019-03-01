@@ -2,10 +2,10 @@ import React, { PureComponent } from 'react';
 import { formatMessage, setLocale, getLocale } from 'umi/locale';
 import { Menu, Icon } from 'antd';
 import classNames from 'classnames';
-import { HeaderDropdown } from 'ant-ts-pro';
+import HeaderDropdown from '../HeaderDropdown';
 import styles from './index.less';
 
-export default class SelectLang extends PureComponent<any, any> {
+export default class SelectLang extends PureComponent {
   changeLang = ({ key }) => {
     setLocale(key);
   };

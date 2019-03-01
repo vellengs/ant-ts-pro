@@ -1,7 +1,7 @@
 import React from 'react';
 import { FormattedMessage } from 'umi/locale';
 import Link from 'umi/link';
-import { PageHeader } from 'ant-ts-pro';
+import PageHeader from '@/components/PageHeader';
 import { connect } from 'dva';
 import GridContent from './GridContent';
 import styles from './index.less';
@@ -19,7 +19,7 @@ const PageHeaderWrapper = ({ children, contentWidth, wrapperClassName, top, ...r
           key="pageheader"
           {...restProps}
           linkElement={Link}
-          itemRender={(item: { locale: any; title: any }) => {
+          itemRender={item => {
             if (item.locale) {
               return <FormattedMessage id={item.locale} defaultMessage={item.title} />;
             }

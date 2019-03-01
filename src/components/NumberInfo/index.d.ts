@@ -1,6 +1,5 @@
 import * as React from 'react';
 export interface INumberInfoProps {
-  suffix?: string;
   title?: React.ReactNode | string;
   subTitle?: React.ReactNode | string;
   total?: React.ReactNode | string;
