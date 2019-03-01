@@ -4,6 +4,7 @@ import router from 'umi/router';
 import hash from 'hash.js';
 import { isAntdPro } from './utils';
 
+declare var window: any;
 const codeMessage = {
   200: '服务器成功返回请求的数据。',
   201: '新建或修改数据成功。',
@@ -33,7 +34,7 @@ const checkStatus = response => {
   });
   const error = new Error(errortext);
   error.name = response.status;
-  error.response = response;
+  (error as any).response = response;
   throw error;
 };
 
@@ -50,7 +51,7 @@ const cachedSave = (response, hashcode) => {
       .text()
       .then(content => {
         sessionStorage.setItem(hashcode, content);
-        sessionStorage.setItem(`${hashcode}:timestamp`, Date.now());
+        sessionStorage.setItem(`${hashcode}:timestamp`, Date.now().toString());
       });
   }
   return response;
@@ -109,7 +110,7 @@ export default function request(url, option) {
     const cached = sessionStorage.getItem(hashcode);
     const whenCached = sessionStorage.getItem(`${hashcode}:timestamp`);
     if (cached !== null && whenCached !== null) {
-      const age = (Date.now() - whenCached) / 1000;
+      const age = (Date.now() - Number(whenCached)) / 1000;
       if (age < expirys) {
         const response = new Response(new Blob([cached]));
         return response.json();

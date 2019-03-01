@@ -48,8 +48,8 @@ export function getTimeDistance(type) {
     ];
   }
 
-  const year = now.getFullYear();
-  return [moment(`${year}-01-01 00:00:00`), moment(`${year}-12-31 23:59:59`)];
+  const fullYear = now.getFullYear();
+  return [moment(`${fullYear}-01-01 00:00:00`), moment(`${fullYear}-12-31 23:59:59`)];
 }
 
 export function getPlainNode(nodeList, parentPath = '') {
@@ -152,7 +152,9 @@ export function isUrl(path) {
 
 export function formatWan(val) {
   const v = val * 1;
-  if (!v || Number.isNaN(v)) return '';
+  if (!v || Number.isNaN(v)) {
+    return '';
+  }
 
   let result = val;
   if (val > 10000) {
